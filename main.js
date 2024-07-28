@@ -1,6 +1,8 @@
 import fs from "fs";
 import readline from "readline";
 import chalk from "chalk";
+import { exec } from "child_process";
+import gtts from "gtts";
 
 // Tạo giao diện nhập liệu
 const rl = readline.createInterface({
@@ -120,6 +122,26 @@ function checkAnswer(word, answer, isEnglishToVietnamese) {
     }
 }
 
+// Phát âm từ vựng
+function speak(text, lang) {
+    return new Promise((resolve, reject) => {
+        const speech = new gtts(text, lang);
+        speech.save("/tmp/voice.mp3", (err, result) => {
+            if (err) {
+                reject(err);
+            } else {
+                exec("mpg123 /tmp/voice.mp3", (err) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve();
+                    }
+                });
+            }
+        });
+    });
+}
+
 // Cơ chế luyện tập
 async function practiceVocabulary(vocabulary) {
     let incorrectWords = [...vocabulary];
@@ -142,6 +164,12 @@ async function practiceVocabulary(vocabulary) {
             const index = Math.floor(Math.random() * incorrectWords.length);
             const word = incorrectWords[index];
             let answer;
+
+            // Phát âm từ với ngôn ngữ tương ứng
+            await speak(
+                choice === "1" ? word.english : word.vietnamese,
+                choice === "1" ? "en" : "vi"
+            );
 
             if (choice === "1") {
                 answer = await new Promise((resolve) =>
