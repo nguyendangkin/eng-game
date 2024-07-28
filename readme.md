@@ -1,6 +1,3 @@
-Dưới đây là một ví dụ về tệp README để giải thích về ứng dụng từ vựng của bạn:
-
-````markdown
 # Ứng Dụng Luyện Từ Vựng
 
 Ứng dụng này giúp người dùng luyện tập từ vựng tiếng Anh và tiếng Việt thông qua các chế độ nhập liệu khác nhau. Bạn có thể chọn nhập từ vựng tiếng Việt cho từ tiếng Anh hoặc ngược lại.
@@ -33,7 +30,6 @@ Dưới đây là một ví dụ về tệp README để giải thích về ứn
 ```sh
 node main.js
 ```
-````
 
 ### Hướng Dẫn Sử Dụng
 
@@ -72,4 +68,8 @@ Nếu bạn muốn đóng góp vào dự án này, vui lòng fork repository, t�
 ```
 
 Thay thế `<repository-url>` và `<repository-directory>` bằng URL và thư mục thích hợp của bạn. Bạn cũng có thể thay đổi thông tin liên hệ theo yêu cầu.
+```
+
+```
+
 ```
