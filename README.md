@@ -40,25 +40,10 @@
 ## Cấu Trúc File
 
 -   `index.html`: File HTML chính chứa cấu trúc và nội dung của ứng dụng.
--   `vocabulary.txt`: File chứa danh sách từ vựng để luyện tập. Định dạng: `từ tiếng Anh = từ tiếng Việt / loại từ`.
+-   `vocabulary.txt`: File chứa danh sách từ vựng để luyện tập. Định dạng: `từ tiếng Anh=từ tiếng Việt/loại từ - thông tin`.
 
 ## Yêu Cầu
 
 -   Trình duyệt web hiện đại hỗ trợ HTML5 và JavaScript.
 -   Đảm bảo rằng file `vocabulary.txt` nằm cùng thư mục với file `index.html`.
 
-## Đóng Góp
-
-Nếu bạn muốn đóng góp cho dự án này, vui lòng tạo một pull request hoặc gửi vấn đề (issue) để chúng tôi có thể xem xét.
-
-## Liên Hệ
-
-Nếu bạn có bất kỳ câu hỏi nào về ứng dụng, hãy liên hệ với chúng tôi tại [email@example.com](mailto:email@example.com).
-
-## Giấy Phép
-
-Ứng dụng này được cấp phép theo [Giấy phép MIT](LICENSE).
-
----
-
-Cảm ơn bạn đã sử dụng ứng dụng học từ vựng của chúng tôi!
