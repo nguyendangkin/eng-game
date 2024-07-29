@@ -39,7 +39,7 @@
 ## Cấu Trúc File
 
 -   `index.html`: File HTML chính chứa cấu trúc và nội dung của ứng dụng.
--   `vocabulary.txt`: File chứa danh sách từ vựng để luyện tập. Định dạng: `từ tiếng Anh = từ tiếng Việt / loại từ`.
+-   `vocabulary.txt`: File chứa danh sách từ vựng để luyện tập. Định dạng: `từ tiếng Anh=từ tiếng Việt/loại từ - thông tin`.
 
 ## Yêu Cầu
 
