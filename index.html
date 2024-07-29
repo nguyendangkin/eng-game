@@ -76,6 +76,12 @@
                 color: #3498db; /* Màu xanh */
                 font-weight: bold; /* Đậm hơn để nổi bật */
             }
+            #back-to-menu {
+                background-color: #e74c3c; /* Màu đỏ để nổi bật */
+            }
+            #back-to-menu:hover {
+                background-color: #c0392b; /* Màu đỏ đậm hơn khi hover */
+            }
         </style>
     </head>
     <body>
@@ -95,6 +101,8 @@
                 />
                 <button id="submit">Gửi</button>
                 <button id="speak">Phát âm</button>
+                <button id="back-to-menu">Quay lại Menu</button>
+                <!-- Thêm nút này -->
                 <p id="feedback" class="feedback"></p>
                 <p id="info"></p>
                 <div id="progress-bar"><div id="progress"></div></div>
@@ -138,6 +146,13 @@
                     }
                 }
             });
+
+            document
+                .getElementById("back-to-menu")
+                .addEventListener("click", () => {
+                    menuEl.style.display = "block";
+                    practiceEl.style.display = "none";
+                });
 
             // Đọc file vocabulary.txt
             fetch("vocabulary.txt")
