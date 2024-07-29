@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Ứng dụng học từ vựng</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                line-height: 1.6;
+                color: #333;
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 20px;
+                background-color: #f4f4f4;
+            }
+            h1 {
+                color: #2c3e50;
+                text-align: center;
+            }
+            #app {
+                background-color: #fff;
+                border-radius: 8px;
+                padding: 20px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            button {
+                background-color: #3498db;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                margin: 5px;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+            button:hover {
+                background-color: #2980b9;
+            }
+            input[type="text"] {
+                width: 100%;
+                padding: 10px;
+                margin: 10px 0;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+            }
+            #progress-bar {
+                width: 100%;
+                background-color: #ddd;
+                border-radius: 5px;
+                margin-top: 20px;
+            }
+            #progress {
+                width: 0;
+                height: 20px;
+                background-color: #2ecc71;
+                border-radius: 5px;
+                transition: width 0.5s;
+            }
+            .feedback {
+                margin-top: 10px;
+                font-weight: bold;
+            }
+            .correct {
+                color: #2ecc71;
+            }
+            .incorrect {
+                color: #e74c3c;
+            }
+            #error-message {
+                color: #e74c3c;
+                font-weight: bold;
+                margin-top: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Ứng dụng học từ vựng</h1>
+        <div id="app">
+            <div id="menu">
+                <button id="practice-en-vi">Tiếng Anh sang Tiếng Việt</button>
+                <button id="practice-vi-en">Tiếng Việt sang Tiếng Anh</button>
+            </div>
+            <div id="error-message"></div>
+            <div id="practice" style="display: none">
+                <h2 id="word"></h2>
+                <input
+                    type="text"
+                    id="answer"
+                    placeholder="Câu trả lời của bạn"
+                />
+                <button id="submit">Gửi</button>
+                <button id="speak">Phát âm</button>
+                <p id="feedback" class="feedback"></p>
+                <p id="info"></p>
+                <div id="progress-bar"><div id="progress"></div></div>
+            </div>
+        </div>
+
+        <script>
+            let vocabulary = [];
+            let currentWord;
+            let remainingWords = [];
+            let incorrectWords = [];
+            let isEnglishToVietnamese = true;
+
+            const menuEl = document.getElementById("menu");
+            const practiceEl = document.getElementById("practice");
+            const wordEl = document.getElementById("word");
+            const answerEl = document.getElementById("answer");
+            const submitEl = document.getElementById("submit");
+            const speakEl = document.getElementById("speak");
+            const feedbackEl = document.getElementById("feedback");
+            const infoEl = document.getElementById("info");
+            const progressEl = document.getElementById("progress");
+            const errorMessageEl = document.getElementById("error-message");
+
+            document
+                .getElementById("practice-en-vi")
+                .addEventListener("click", () => startPractice(true));
+            document
+                .getElementById("practice-vi-en")
+                .addEventListener("click", () => startPractice(false));
+            submitEl.addEventListener("click", checkAnswer);
+            speakEl.addEventListener("click", speakWord);
+            answerEl.addEventListener("keyup", function (event) {
+                if (event.key === "Enter") {
+                    if (feedbackEl.textContent) {
+                        nextWord();
+                    } else {
+                        checkAnswer();
+                    }
+                }
+            });
+
+            // Đọc file vocabulary.txt
+            fetch("vocabulary.txt")
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error("Không thể đọc file vocabulary.txt");
+                    }
+                    return response.text();
+                })
+                .then((content) => {
+                    vocabulary = parseVocabularyFile(content);
+                    if (vocabulary.length === 0) {
+                        throw new Error(
+                            "File vocabulary.txt rỗng hoặc không đúng định dạng"
+                        );
+                    }
+                    console.log("Từ vựng đã được tải thành công!");
+                    errorMessageEl.textContent = "";
+                })
+                .catch((error) => {
+                    console.error("Lỗi khi đọc file vocabulary.txt:", error);
+                    errorMessageEl.textContent = `Lỗi: ${error.message}. Đang sử dụng từ vựng mặc định.`;
+                    vocabulary = getDefaultVocabulary();
+                });
+
+            function getDefaultVocabulary() {
+                return [
+                    {
+                        english: "last name",
+                        vietnamese: "họ",
+                        type: "danh từ, số ít",
+                    },
+                    {
+                        english: "pretty",
+                        vietnamese: "xinh đẹp",
+                        type: "tính từ",
+                    },
+                    { english: "happy", vietnamese: "vui vẻ", type: "tính từ" },
+                ];
+            }
+
+            function startPractice(enToVi) {
+                isEnglishToVietnamese = enToVi;
+                menuEl.style.display = "none";
+                practiceEl.style.display = "block";
+                remainingWords = [...vocabulary];
+                incorrectWords = [];
+                nextWord();
+            }
+
+            function nextWord() {
+                if (remainingWords.length === 0) {
+                    if (incorrectWords.length === 0) {
+                        practiceEl.innerHTML =
+                            "<h2>Chúc mừng! Bạn đã hoàn thành tất cả các từ.</h2>";
+                        return;
+                    } else {
+                        remainingWords = [...incorrectWords];
+                        incorrectWords = [];
+                    }
+                }
+
+                const index = Math.floor(Math.random() * remainingWords.length);
+                currentWord = remainingWords[index];
+                wordEl.textContent = isEnglishToVietnamese
+                    ? currentWord.english
+                    : currentWord.vietnamese;
+                answerEl.value = "";
+                feedbackEl.textContent = "";
+                infoEl.textContent = "";
+                updateProgress();
+                answerEl.focus();
+            }
+
+            function checkAnswer() {
+                const userAnswer = answerEl.value.trim().toLowerCase();
+                const correctAnswer = isEnglishToVietnamese
+                    ? currentWord.vietnamese
+                    : currentWord.english;
+
+                if (userAnswer === correctAnswer.toLowerCase()) {
+                    feedbackEl.textContent = "Đúng!";
+                    feedbackEl.className = "feedback correct";
+                    remainingWords = remainingWords.filter(
+                        (word) => word !== currentWord
+                    );
+                } else {
+                    feedbackEl.textContent = `Sai. Đáp án đúng là "${correctAnswer}".`;
+                    feedbackEl.className = "feedback incorrect";
+                    incorrectWords.push(currentWord);
+                }
+
+                infoEl.textContent = `${currentWord.english} có nghĩa là ${currentWord.vietnamese} (${currentWord.type}).`;
+            }
+
+            function updateProgress() {
+                const totalWords = vocabulary.length;
+                const correctWords =
+                    totalWords -
+                    (remainingWords.length + incorrectWords.length);
+                const progress = (correctWords / totalWords) * 100;
+                progressEl.style.width = `${progress}%`;
+            }
+
+            function speakWord() {
+                const text = isEnglishToVietnamese
+                    ? currentWord.english
+                    : currentWord.vietnamese;
+                const lang = isEnglishToVietnamese ? "en-US" : "vi-VN";
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = lang;
+                speechSynthesis.speak(utterance);
+            }
+
+            function parseVocabularyFile(content) {
+                if (!content || content.trim() === "") {
+                    throw new Error("File vocabulary.txt rỗng");
+                }
+                const lines = content.trim().split("\n");
+                return lines.map((line) => {
+                    const parts = line.split("=");
+                    if (parts.length !== 2) {
+                        throw new Error("Định dạng file không đúng");
+                    }
+                    const [english, rest] = parts;
+                    const [vietnamese, type] = rest.split("/");
+                    if (!english || !vietnamese || !type) {
+                        throw new Error("Thiếu thông tin trong file");
+                    }
+                    return {
+                        english: english.trim(),
+                        vietnamese: vietnamese.trim(),
+                        type: type.trim(),
+                    };
+                });
+            }
+        </script>
+    </body>
+</html>
