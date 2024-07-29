@@ -21,6 +21,7 @@
     - Nhấp vào một trong hai nút để chọn chế độ luyện tập:
         - **Tiếng Anh sang Tiếng Việt**
         - **Tiếng Việt sang Tiếng Anh**
+    - Khi con trỏ ở ô input thì enter sẽ "Gửi" và là "Tiếp". Đồng thời, khi nhấn phím "esc" sẽ là phát âm.
 
 3. **Luyện Tập:**
 
