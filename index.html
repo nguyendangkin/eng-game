@@ -72,6 +72,10 @@
                 font-weight: bold;
                 margin-top: 10px;
             }
+            .highlight {
+                color: #3498db; /* Màu xanh */
+                font-weight: bold; /* Đậm hơn để nổi bật */
+            }
         </style>
     </head>
     <body>
@@ -103,6 +107,8 @@
             let remainingWords = [];
             let incorrectWords = [];
             let isEnglishToVietnamese = true;
+            let correctWords = 0; // Số từ đúng đã học
+            const totalWords = () => vocabulary.length; // Tổng số từ
 
             const menuEl = document.getElementById("menu");
             const practiceEl = document.getElementById("practice");
@@ -179,6 +185,7 @@
                 practiceEl.style.display = "block";
                 remainingWords = [...vocabulary];
                 incorrectWords = [];
+                correctWords = 0; // Đặt lại số từ đúng
                 nextWord();
             }
 
@@ -218,21 +225,19 @@
                     remainingWords = remainingWords.filter(
                         (word) => word !== currentWord
                     );
+                    correctWords++; // Tăng số từ đúng
+                    updateProgress(); // Cập nhật thanh tiến trình
                 } else {
-                    feedbackEl.textContent = `Sai. Đáp án đúng là "${correctAnswer}".`;
+                    feedbackEl.textContent = `Sai!`;
                     feedbackEl.className = "feedback incorrect";
                     incorrectWords.push(currentWord);
                 }
 
-                infoEl.textContent = `${currentWord.english} có nghĩa là ${currentWord.vietnamese} (${currentWord.type}).`;
+                infoEl.innerHTML = `<span class="highlight">${currentWord.english}</span> có nghĩa là <span class="highlight">${currentWord.vietnamese}</span> (${currentWord.type}).`;
             }
 
             function updateProgress() {
-                const totalWords = vocabulary.length;
-                const correctWords =
-                    totalWords -
-                    (remainingWords.length + incorrectWords.length);
-                const progress = (correctWords / totalWords) * 100;
+                const progress = (correctWords / totalWords()) * 100;
                 progressEl.style.width = `${progress}%`;
             }
 
