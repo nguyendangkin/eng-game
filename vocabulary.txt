@@ -1,22 +1,95 @@
-contracts=hợp đồng/danh từ
-determine=xác định/động từ - hợp đồng
-conviction=sự cáo buộc/danh từ - hợp đồng
-sign=ký tên/động từ - hợp đồng
-engage in something=tham gia vào, tiến hành làm/động từ - hợp đồng
+# Danh từ (Noun)
+agreement=thỏa thuận/danh từ - hợp đồng
+development=sự phát triển/danh từ - quá trình
+government=chính phủ/danh từ - cơ quan
+information=thông tin/danh từ - dữ liệu
+community=cộng đồng/danh từ - nhóm người
+experience=kinh nghiệm/danh từ - trải nghiệm
+opportunity=cơ hội/danh từ - khả năng
+knowledge=kiến thức/danh từ - thông tin
+environment=môi trường/danh từ - không gian
+situation=tình huống/danh từ - hoàn cảnh
+
+# Động từ (Verb)
 establish=thành lập/động từ - hợp đồng
-party=bên, đối tác/danh từ - hợp đồng
-provision=điều khoản/danh từ - hợp đồng
-resolve=xử lí, giải quyết/động từ - hợp đồng
-agreement=sự thỏa thuận, hợp đồng/danh từ - hợp đồng
-abide by=tuân thủ/động từ - hợp đồng
-testimonium clause=điều khoản kết thúc hợp đồng/danh từ - hợp đồng
-translate=dịch/động từ - hợp đồng
-renew=gia hạn/động từ - hợp đồng
-bankruptcy=sự vỡ nợ, sự phá sản/danh từ - hợp đồng
-hesitate=do dự, ngần ngại/động từ - hợp đồng
-specific=rõ ràng, cụ thể/ tính từ - hợp đồng
-assurance=sự bảo đảm/danh từ - hợp đồng
-appreciate=coi trọng, đánh giá cao/động từ - hợp đồng
-obligate=bắt buộc/động từ - hợp đồng
-cancellation=sự hủy bỏ/danh từ - hợp đồng
-signature=chữ ký/danh từ - hợp đồng
+consider=cân nhắc/động từ - suy nghĩ
+determine=quyết định/động từ - hành động
+require=yêu cầu/động từ - nhu cầu
+increase=tăng lên/động từ - sự thay đổi
+create=tạo ra/động từ - sự sáng tạo
+develop=phát triển/động từ - quá trình
+achieve=đạt được/động từ - mục tiêu
+improve=cải thiện/động từ - nâng cao
+maintain=duy trì/động từ - sự ổn định
+
+# Tính từ (Adjective)
+significant=đáng kể/tính từ - tầm quan trọng
+necessary=cần thiết/tính từ - tình trạng
+different=khác biệt/tính từ - sự so sánh
+important=quan trọng/tính từ - tầm quan trọng
+economic=kinh tế/tính từ - lĩnh vực
+available=sẵn có/tính từ - khả dụng
+professional=chuyên nghiệp/tính từ - nghề nghiệp
+international=quốc tế/tính từ - phạm vi
+effective=hiệu quả/tính từ - kết quả
+common=thông thường/tính từ - phổ biến
+
+# Trạng từ (Adverb)
+frequently=thường xuyên/trạng từ - thời gian
+usually=thường thường/trạng từ - tần suất
+specifically=đặc biệt/trạng từ - chi tiết
+quickly=nhanh chóng/trạng từ - tốc độ
+simply=đơn giản/trạng từ - cách thức
+recently=gần đây/trạng từ - thời gian
+constantly=liên tục/trạng từ - tần suất
+particularly=đặc biệt/trạng từ - sự chú ý
+effectively=hiệu quả/trạng từ - kết quả
+immediately=ngay lập tức/trạng từ - thời gian
+
+# Đại từ (Pronoun)
+he=anh ấy/đại từ - người nam
+she=cô ấy/đại từ - người nữ
+it=nó/đại từ - vật hoặc động vật
+they=họ/đại từ - nhóm người
+we=chúng ta/đại từ - nhóm người bao gồm người nói
+you=bạn/đại từ - người nghe
+this=cái này/đại từ - vật gần
+that=cái đó/đại từ - vật xa
+these=những cái này/đại từ - vật gần, số nhiều
+those=những cái đó/đại từ - vật xa, số nhiều
+
+# Giới từ (Preposition)
+in=trong/giới từ - vị trí
+on=trên/giới từ - vị trí
+at=tại/giới từ - vị trí
+by=bởi/giới từ - phương tiện
+with=với/giới từ - sự kết hợp
+about=về/giới từ - chủ đề
+for=cho/giới từ - mục đích
+from=từ/giới từ - nguồn gốc
+under=dưới/giới từ - vị trí
+between=giữa/giới từ - khoảng cách
+
+# Liên từ (Conjunction)
+and=và/liên từ - kết nối
+but=nhưng/liên từ - đối lập
+or=hoặc/liên từ - lựa chọn
+because=bởi vì/liên từ - nguyên nhân
+although=mặc dù/liên từ - mối quan hệ
+if=nếu/liên từ - điều kiện
+so=vì thế/liên từ - kết quả
+while=trong khi/liên từ - thời gian
+as=như/liên từ - so sánh
+until=cho đến khi/liên từ - thời gian
+
+# Thán từ (Interjection)
+oh=ôi/thán từ - ngạc nhiên
+wow=chà/thán từ - kinh ngạc
+ouch=ái/thán từ - đau đớn
+hurray=hoan hô/thán từ - vui mừng
+oops=úi/thán từ - nhầm lẫn
+ah=à/thán từ - nhận thức
+ugh=euu/thán từ - kinh tởm
+hey=này/thán từ - gọi sự chú ý
+well=ừ/thán từ - sự đồng ý
+yay=yeah/thán từ - vui mừng
