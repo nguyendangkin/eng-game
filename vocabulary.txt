@@ -1,95 +1,45 @@
-# Danh từ (Noun)
-agreement=thỏa thuận/danh từ - hợp đồng
-development=sự phát triển/danh từ - quá trình
-government=chính phủ/danh từ - cơ quan
-information=thông tin/danh từ - dữ liệu
-community=cộng đồng/danh từ - nhóm người
-experience=kinh nghiệm/danh từ - trải nghiệm
-opportunity=cơ hội/danh từ - khả năng
-knowledge=kiến thức/danh từ - thông tin
-environment=môi trường/danh từ - không gian
-situation=tình huống/danh từ - hoàn cảnh
-
-# Động từ (Verb)
-establish=thành lập/động từ - hợp đồng
-consider=cân nhắc/động từ - suy nghĩ
-determine=quyết định/động từ - hành động
-require=yêu cầu/động từ - nhu cầu
-increase=tăng lên/động từ - sự thay đổi
-create=tạo ra/động từ - sự sáng tạo
-develop=phát triển/động từ - quá trình
-achieve=đạt được/động từ - mục tiêu
-improve=cải thiện/động từ - nâng cao
-maintain=duy trì/động từ - sự ổn định
-
-# Tính từ (Adjective)
-significant=đáng kể/tính từ - tầm quan trọng
-necessary=cần thiết/tính từ - tình trạng
-different=khác biệt/tính từ - sự so sánh
-important=quan trọng/tính từ - tầm quan trọng
-economic=kinh tế/tính từ - lĩnh vực
-available=sẵn có/tính từ - khả dụng
-professional=chuyên nghiệp/tính từ - nghề nghiệp
-international=quốc tế/tính từ - phạm vi
-effective=hiệu quả/tính từ - kết quả
-common=thông thường/tính từ - phổ biến
-
-# Trạng từ (Adverb)
-frequently=thường xuyên/trạng từ - thời gian
-usually=thường thường/trạng từ - tần suất
-specifically=đặc biệt/trạng từ - chi tiết
-quickly=nhanh chóng/trạng từ - tốc độ
-simply=đơn giản/trạng từ - cách thức
-recently=gần đây/trạng từ - thời gian
-constantly=liên tục/trạng từ - tần suất
-particularly=đặc biệt/trạng từ - sự chú ý
-effectively=hiệu quả/trạng từ - kết quả
-immediately=ngay lập tức/trạng từ - thời gian
-
-# Đại từ (Pronoun)
-he=anh ấy/đại từ - người nam
-she=cô ấy/đại từ - người nữ
-it=nó/đại từ - vật hoặc động vật
-they=họ/đại từ - nhóm người
-we=chúng ta/đại từ - nhóm người bao gồm người nói
-you=bạn/đại từ - người nghe
-this=cái này/đại từ - vật gần
-that=cái đó/đại từ - vật xa
-these=những cái này/đại từ - vật gần, số nhiều
-those=những cái đó/đại từ - vật xa, số nhiều
-
-# Giới từ (Preposition)
-in=trong/giới từ - vị trí
-on=trên/giới từ - vị trí
-at=tại/giới từ - vị trí
-by=bởi/giới từ - phương tiện
-with=với/giới từ - sự kết hợp
-about=về/giới từ - chủ đề
-for=cho/giới từ - mục đích
-from=từ/giới từ - nguồn gốc
-under=dưới/giới từ - vị trí
-between=giữa/giới từ - khoảng cách
-
-# Liên từ (Conjunction)
-and=và/liên từ - kết nối
-but=nhưng/liên từ - đối lập
-or=hoặc/liên từ - lựa chọn
-because=bởi vì/liên từ - nguyên nhân
-although=mặc dù/liên từ - mối quan hệ
-if=nếu/liên từ - điều kiện
-so=vì thế/liên từ - kết quả
-while=trong khi/liên từ - thời gian
-as=như/liên từ - so sánh
-until=cho đến khi/liên từ - thời gian
-
-# Thán từ (Interjection)
-oh=ôi/thán từ - ngạc nhiên
-wow=chà/thán từ - kinh ngạc
-ouch=ái/thán từ - đau đớn
-hurray=hoan hô/thán từ - vui mừng
-oops=úi/thán từ - nhầm lẫn
-ah=à/thán từ - nhận thức
-ugh=euu/thán từ - kinh tởm
-hey=này/thán từ - gọi sự chú ý
-well=ừ/thán từ - sự đồng ý
-yay=yeah/thán từ - vui mừng
+are=là, ở, thì/động từ - đi với chủ ngữ số nhiều
+choose=chọn, chọn lựa/động từ
+count=đếm, tính/động từ
+fine=mạnh, khỏe, tốt/tính từ
+good afternoon=xin chào/thán từ - dùng cho buổi chiều
+good evening=xin chào/thán từ - dùng cho buổi tối
+good morning=xin chào/thán từ - dùng cho buổi sáng
+good night=chúc ngủ ngon/thán từ 
+goodbye=thạm biệt/thán từ
+he=anh ấy, chú ấy, bác ấy, cậu ấy/đại từ
+hello=xin chào/thán từ
+her=của cô ấy, của bà ấy/từ xác định
+hi=xin chào/thán từ
+his=của anh ấy, của cậu ấy, của chú ấy/từ xác định
+it=nó/đại từ
+its=nó/từ xác định
+madam=bà/danh từ
+miss=cô/danh từ - chưa có gia đình
+my=của tôi/từ xác định
+our=của chúng tôi/từ xác định
+she=cô ấy, bà ấy/đại từ
+sir=ngài/danh từ
+thank=cảm ơn/động từ
+their=của họ/từ xác định
+they=khọ, bọn họ/đại từ
+we=chúng tôi, chúng ta/đại từ
+you=bạn, các bạn/đại từ
+your=của bạn/từ xác định
+child=đứa trẻ/danh từ số ít
+children=những đứa trẻ/danh từ số nhiều
+classmate=bạn cùng lớp/danh từ
+draw=vẽ/động từ
+exercise book=vở bài tập/cụm danh từ
+greeting=lời chào hỏi/danh từ
+group=nhóm/danh từ
+listen=nghe/động từ
+number=số/danh từ
+partner=bạn/danh từ - cùng phe cùng nhóm
+play=chơi/động từ
+practice=luyện tập, thực hành/động từ
+remember=nhớ/động từ
+reqeat=nhắc lại/động từ
+say=nói/động từ
+square=hình vuông/danh từ
+write=viết/động từ
