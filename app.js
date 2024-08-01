@@ -128,17 +128,25 @@ function handleSubmitClick() {
 function checkAnswer() {
     const userAnswer = answerEl.value.trim().toLowerCase();
     const correctAnswer = isEnglishToVietnamese
-        ? currentWord.vietnamese
-        : currentWord.english;
+        ? currentWord.vietnamese.toLowerCase()
+        : currentWord.english.toLowerCase();
 
-    if (userAnswer === correctAnswer.toLowerCase()) {
+    // Tách các từ trong câu trả lời chính xác sau dấu phẩy
+    const correctAnswerWords = correctAnswer.split(/\s*,\s*/);
+
+    // Kiểm tra xem bất kỳ từ nào trong câu trả lời của người dùng có nằm trong các từ đúng không
+    const isCorrect = correctAnswerWords.some((answerWord) =>
+        userAnswer.includes(answerWord)
+    );
+
+    if (isCorrect) {
         feedbackEl.textContent = "Đúng!";
         feedbackEl.className = "feedback correct";
         remainingWords = remainingWords.filter((word) => word !== currentWord);
         correctWords++;
         updateProgress();
     } else {
-        feedbackEl.textContent = `Sai!`;
+        feedbackEl.textContent = "Sai!";
         feedbackEl.className = "feedback incorrect";
         incorrectWords.push(currentWord);
     }
