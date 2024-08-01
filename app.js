@@ -2,7 +2,7 @@ let vocabulary = [];
 let currentWord;
 let remainingWords = [];
 let incorrectWords = [];
-let isEnglishToVietnamese = true;
+let isVietnameseToEnglish = true;
 let correctWords = 0;
 let isAnswerSubmitted = false;
 const totalWords = () => vocabulary.length;
@@ -19,10 +19,10 @@ const progressEl = document.getElementById("progress");
 const errorMessageEl = document.getElementById("error-message");
 
 document
-    .getElementById("practice-en-vi")
+    .getElementById("practice-vi-en")
     .addEventListener("click", () => startPractice(true));
 document
-    .getElementById("practice-vi-en")
+    .getElementById("practice-en-vi")
     .addEventListener("click", () => startPractice(false));
 submitEl.addEventListener("click", handleSubmitClick);
 speakEl.addEventListener("click", speakWord);
@@ -65,22 +65,25 @@ function getDefaultVocabulary() {
             english: "last name",
             vietnamese: "họ",
             type: "danh từ, số ít",
+            note: "",
         },
         {
             english: "pretty",
             vietnamese: "xinh đẹp",
             type: "tính từ",
+            note: "",
         },
         {
             english: "happy",
             vietnamese: "vui vẻ",
             type: "tính từ",
+            note: "",
         },
     ];
 }
 
-function startPractice(enToVi) {
-    isEnglishToVietnamese = enToVi;
+function startPractice(viToEn) {
+    isVietnameseToEnglish = viToEn;
     menuEl.style.display = "none";
     practiceEl.style.display = "block";
     remainingWords = [...vocabulary];
@@ -105,9 +108,13 @@ function nextWord() {
 
     const index = Math.floor(Math.random() * remainingWords.length);
     currentWord = remainingWords[index];
-    wordEl.textContent = isEnglishToVietnamese
-        ? currentWord.english
-        : currentWord.vietnamese;
+    if (isVietnameseToEnglish) {
+        wordEl.textContent = `${currentWord.vietnamese} ${
+            currentWord.note ? `(${currentWord.note})` : ""
+        }`;
+    } else {
+        wordEl.textContent = currentWord.english;
+    }
     answerEl.value = "";
     feedbackEl.textContent = "";
     infoEl.textContent = "";
@@ -127,9 +134,9 @@ function handleSubmitClick() {
 
 function checkAnswer() {
     const userAnswer = answerEl.value.trim().toLowerCase();
-    const correctAnswer = isEnglishToVietnamese
-        ? currentWord.vietnamese.toLowerCase()
-        : currentWord.english.toLowerCase();
+    const correctAnswer = isVietnameseToEnglish
+        ? currentWord.english.toLowerCase()
+        : currentWord.vietnamese.toLowerCase();
 
     // Tách các từ trong câu trả lời chính xác sau dấu phẩy
     const correctAnswerWords = correctAnswer.split(/\s*,\s*/);
@@ -151,7 +158,11 @@ function checkAnswer() {
         incorrectWords.push(currentWord);
     }
 
-    infoEl.innerHTML = `<span class="highlight">${currentWord.english}</span> có nghĩa là <span class="highlight">${currentWord.vietnamese}</span> (${currentWord.type}).`;
+    if (isVietnameseToEnglish) {
+        infoEl.innerHTML = `<span class="highlight">${currentWord.vietnamese}</span> có nghĩa là <span class="highlight">${currentWord.english}</span> (${currentWord.type}).`;
+    } else {
+        infoEl.innerHTML = `<span class="highlight">${currentWord.english}</span> có nghĩa là <span class="highlight">${currentWord.vietnamese}</span> (${currentWord.type}).`;
+    }
     isAnswerSubmitted = true;
     submitEl.textContent = "Tiếp";
 }
@@ -162,10 +173,10 @@ function updateProgress() {
 }
 
 function speakWord() {
-    const text = isEnglishToVietnamese
-        ? currentWord.english
-        : currentWord.vietnamese;
-    const lang = isEnglishToVietnamese ? "en-US" : "vi-VN";
+    const text = isVietnameseToEnglish
+        ? currentWord.vietnamese
+        : currentWord.english;
+    const lang = isVietnameseToEnglish ? "vi-VN" : "en-US";
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = lang;
     speechSynthesis.speak(utterance);
@@ -175,11 +186,13 @@ function parseVocabularyFile(content) {
     const lines = content.trim().split("\n");
     return lines.map((line) => {
         const [english, rest] = line.split("=");
-        const [vietnamese, type] = rest.split("/");
+        const [vietnamese, typeAndNote] = rest.split("/");
+        const [type, note] = typeAndNote.split(" - ");
         return {
             english: english.trim(),
             vietnamese: vietnamese.trim(),
             type: type.trim(),
+            note: note ? note.trim() : "",
         };
     });
 }
