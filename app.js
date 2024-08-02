@@ -17,15 +17,25 @@ const feedbackEl = document.getElementById("feedback");
 const infoEl = document.getElementById("info");
 const progressEl = document.getElementById("progress");
 const errorMessageEl = document.getElementById("error-message");
+const saveProgressEl = document.getElementById("save-progress");
+const continuePracticeEl = document.getElementById("continue-practice");
+const newPracticeEl = document.getElementById("new-practice");
 
 document
     .getElementById("practice-vi-en")
-    .addEventListener("click", () => startPractice(true));
+    .addEventListener("click", () => startPractice(true, false));
 document
     .getElementById("practice-en-vi")
-    .addEventListener("click", () => startPractice(false));
+    .addEventListener("click", () => startPractice(false, false));
 submitEl.addEventListener("click", handleSubmitClick);
 speakEl.addEventListener("click", speakWord);
+saveProgressEl.addEventListener("click", saveProgress);
+continuePracticeEl.addEventListener("click", () =>
+    startPractice(isVietnameseToEnglish, true)
+);
+newPracticeEl.addEventListener("click", () =>
+    startPractice(isVietnameseToEnglish, false)
+);
 
 answerEl.addEventListener("keyup", function (event) {
     if (event.key === "Enter") {
@@ -42,6 +52,8 @@ answerEl.addEventListener("keyup", function (event) {
 document.getElementById("back-to-menu").addEventListener("click", () => {
     menuEl.style.display = "block";
     practiceEl.style.display = "none";
+    saveProgress();
+    updateMenuButtons();
 });
 
 // Fetch vocabulary.txt file
@@ -51,12 +63,14 @@ fetch("vocabulary.txt")
         vocabulary = parseVocabularyFile(content);
         console.log("Từ vựng đã được tải thành công!");
         errorMessageEl.textContent = "";
+        updateMenuButtons();
     })
     .catch((error) => {
         console.error("Lỗi khi đọc file vocabulary.txt:", error);
         errorMessageEl.textContent =
             "Lỗi khi tải từ vựng. Đang sử dụng từ vựng mặc định.";
         vocabulary = getDefaultVocabulary();
+        updateMenuButtons();
     });
 
 function getDefaultVocabulary() {
@@ -82,13 +96,19 @@ function getDefaultVocabulary() {
     ];
 }
 
-function startPractice(viToEn) {
+function startPractice(viToEn, continueProgress) {
     isVietnameseToEnglish = viToEn;
     menuEl.style.display = "none";
     practiceEl.style.display = "block";
-    remainingWords = [...vocabulary];
-    incorrectWords = [];
-    correctWords = 0;
+
+    if (continueProgress) {
+        loadProgress();
+    } else {
+        remainingWords = [...vocabulary];
+        incorrectWords = [];
+        correctWords = 0;
+    }
+
     isAnswerSubmitted = false;
     submitEl.textContent = "Gửi";
     nextWord();
@@ -138,10 +158,8 @@ function checkAnswer() {
         ? currentWord.english.toLowerCase()
         : currentWord.vietnamese.toLowerCase();
 
-    // Tách các từ trong câu trả lời chính xác sau dấu phẩy
     const correctAnswerWords = correctAnswer.split(/\s*,\s*/);
 
-    // Kiểm tra xem bất kỳ từ nào trong câu trả lời của người dùng có nằm trong các từ đúng không
     const isCorrect = correctAnswerWords.some((answerWord) =>
         userAnswer.includes(answerWord)
     );
@@ -173,12 +191,9 @@ function updateProgress() {
 }
 
 function speakWord() {
-    const text = isVietnameseToEnglish
-        ? currentWord.vietnamese
-        : currentWord.english;
-    const lang = isVietnameseToEnglish ? "vi-VN" : "en-US";
+    const text = currentWord.english; // Always speak the English word
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = lang;
+    utterance.lang = "en-US";
     speechSynthesis.speak(utterance);
 }
 
@@ -196,3 +211,41 @@ function parseVocabularyFile(content) {
         };
     });
 }
+
+function saveProgress() {
+    const progress = {
+        remainingWords,
+        incorrectWords,
+        correctWords,
+        isVietnameseToEnglish,
+    };
+    localStorage.setItem("vocabularyProgress", JSON.stringify(progress));
+    alert("Tiến độ đã được lưu!");
+}
+
+function loadProgress() {
+    const savedProgress = JSON.parse(
+        localStorage.getItem("vocabularyProgress")
+    );
+    if (savedProgress) {
+        remainingWords = savedProgress.remainingWords;
+        incorrectWords = savedProgress.incorrectWords;
+        correctWords = savedProgress.correctWords;
+        isVietnameseToEnglish = savedProgress.isVietnameseToEnglish;
+        updateProgress();
+    }
+}
+
+function updateMenuButtons() {
+    const savedProgress = JSON.parse(
+        localStorage.getItem("vocabularyProgress")
+    );
+    if (savedProgress) {
+        continuePracticeEl.style.display = "inline-block";
+    } else {
+        continuePracticeEl.style.display = "none";
+    }
+}
+
+// Thêm event listener cho window unload để lưu tiến độ trước khi đóng trang
+window.addEventListener("beforeunload", saveProgress);
