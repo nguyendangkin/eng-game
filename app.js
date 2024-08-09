@@ -79,19 +79,19 @@ function getDefaultVocabulary() {
             english: "last name",
             vietnamese: "họ",
             type: "danh từ, số ít",
-            note: "",
+            note: "tên họ của một người, thường đứng sau tên đệm và tên gọi",
         },
         {
             english: "pretty",
             vietnamese: "xinh đẹp",
             type: "tính từ",
-            note: "",
+            note: "có vẻ đẹp dễ thương, thu hút",
         },
         {
             english: "happy",
             vietnamese: "vui vẻ",
             type: "tính từ",
-            note: "",
+            note: "cảm thấy hoặc thể hiện niềm vui, hạnh phúc",
         },
     ];
 }
@@ -176,10 +176,11 @@ function checkAnswer() {
         incorrectWords.push(currentWord);
     }
 
+    const noteInfo = currentWord.note ? ` - ${currentWord.note}` : "";
     if (isVietnameseToEnglish) {
-        infoEl.innerHTML = `<span class="highlight">${currentWord.vietnamese}</span> có nghĩa là <span class="highlight">${currentWord.english}</span> (${currentWord.type}).`;
+        infoEl.innerHTML = `<span class="highlight">${currentWord.vietnamese}</span> có nghĩa là <span class="highlight">${currentWord.english}</span> (${currentWord.type}${noteInfo}).`;
     } else {
-        infoEl.innerHTML = `<span class="highlight">${currentWord.english}</span> có nghĩa là <span class="highlight">${currentWord.vietnamese}</span> (${currentWord.type}).`;
+        infoEl.innerHTML = `<span class="highlight">${currentWord.english}</span> có nghĩa là <span class="highlight">${currentWord.vietnamese}</span> (${currentWord.type}${noteInfo}).`;
     }
     isAnswerSubmitted = true;
     submitEl.textContent = "Tiếp";
