@@ -124,3 +124,86 @@ thirty = ba mươi/số - số 30, chỉ số lượng hoặc vị trí thứ 30
 who = ai/đại từ - dùng để hỏi về danh tính của người nào đó (ví dụ: Who is that person? - Người đó là ai?)
 younger brother = em trai/danh từ - dùng để chỉ người con trai trong gia đình, nhấn mạnh chênh lệch tuổi tác, nhỏ hơn người nói (ví dụ: My younger brother is in high school. - Em trai tôi đang học trung học.)
 younger sister = em gái/danh từ - dùng để chỉ người con gái trong gia đình, nhấn mạnh chênh lệch tuổi tác, nhỏ hơn người nói (ví dụ: Her younger sister is very talented. - Em gái cô ấy rất tài năng.)
+
+
+
+
+
+
+big = to lớn/tính từ - dùng để mô tả kích thước hoặc tầm quan trọng của một đối tượng (ví dụ: The elephant is a big animal. - Con voi là một con vật to lớn.)
+
+breakfast = bữa ăn sáng, điểm tâm/danh từ - bữa ăn đầu tiên trong ngày, thường ăn vào buổi sáng (ví dụ: I usually have eggs for breakfast. - Tôi thường ăn trứng cho bữa sáng.)
+
+brush = đánh răng, chải răng/động từ - hành động sử dụng bàn chải để làm sạch răng (ví dụ: You should brush your teeth twice a day. - Bạn nên đánh răng hai lần mỗi ngày.)
+
+class = lớp học/danh từ - một nhóm học sinh hoặc một buổi học theo kế hoạch trong một môn học nhất định (ví dụ: My math class starts at 8 a.m. - Lớp học toán của tôi bắt đầu lúc 8 giờ sáng.)
+
+country = đất nước, miền quê/danh từ - một vùng lãnh thổ có chủ quyền hoặc khu vực nông thôn xa thành thị (ví dụ: Japan is a beautiful country. - Nhật Bản là một đất nước đẹp.)
+
+dinner = bữa tối/danh từ - bữa ăn chính vào buổi tối (ví dụ: We had chicken for dinner. - Chúng tôi đã ăn gà cho bữa tối.)
+
+do = làm/động từ - thực hiện một hành động hoặc nhiệm vụ (ví dụ: What are you doing? - Bạn đang làm gì?)
+
+doctor = bác sỹ/danh từ - người có chuyên môn y khoa, được đào tạo để chữa bệnh và chăm sóc sức khỏe (ví dụ: She is a doctor at the local hospital. - Cô ấy là bác sĩ tại bệnh viện địa phương.)
+
+engineer = kỹ sư/danh từ - người thiết kế, xây dựng, và quản lý các hệ thống kỹ thuật (ví dụ: He is a software engineer. - Anh ấy là kỹ sư phần mềm.)
+
+every = mỗi/từ hạn định - chỉ từng đối tượng riêng lẻ trong một nhóm (ví dụ: Every student needs to bring their book. - Mỗi học sinh cần mang theo sách của mình.)
+
+face = khuôn mặt/danh từ - phần trước của đầu người hoặc động vật, nơi có mắt, mũi, miệng (ví dụ: She has a friendly face. - Cô ấy có khuôn mặt thân thiện.)
+
+floor = tầng, lầu/danh từ - tầng của một tòa nhà (ví dụ: They live on the third floor. - Họ sống ở tầng ba.)
+
+get dressed = mặc quần áo/động từ - hành động mặc trang phục lên người (ví dụ: I usually get dressed after breakfast. - Tôi thường mặc quần áo sau bữa sáng.)
+
+get ready = chuẩn bị sẵn sàng/động từ - làm cho bản thân hoặc thứ gì đó sẵn sàng để thực hiện việc gì đó (ví dụ: We need to get ready for the trip. - Chúng ta cần chuẩn bị sẵn sàng cho chuyến đi.)
+
+get up = thức dậy/động từ - rời khỏi giường sau khi ngủ dậy (ví dụ: I get up at 7 a.m. every day. - Tôi thức dậy lúc 7 giờ sáng mỗi ngày.)
+
+go = đi/động từ - di chuyển từ nơi này đến nơi khác (ví dụ: I go to school by bus. - Tôi đi học bằng xe buýt.)
+
+grade = lớp/danh từ - chỉ cấp bậc hoặc trình độ học tập (ví dụ: She is in the fifth grade. - Cô ấy đang học lớp năm.)
+
+half = một nửa, phân nửa/danh từ - một phần chia đều của một tổng thể (ví dụ: We shared the cake in half. - Chúng tôi chia đôi chiếc bánh.)
+
+have = có/động từ - sở hữu hoặc nắm giữ thứ gì đó (ví dụ: I have a new bike. - Tôi có một chiếc xe đạp mới.)
+
+hour = giờ, tiếng đồng hồ/danh từ - đơn vị đo thời gian bằng 60 phút (ví dụ: The meeting lasted for two hours. - Cuộc họp kéo dài hai tiếng đồng hồ.)
+
+late = muộn, trễ/tính từ - diễn ra sau thời gian dự định (ví dụ: She arrived late to the party. - Cô ấy đến bữa tiệc muộn.)
+
+lunch = bữa trưa/danh từ - bữa ăn giữa ngày, thường vào khoảng 12 giờ trưa (ví dụ: Let's have lunch together. - Hãy ăn trưa cùng nhau.)
+
+midday = trưa, buổi trưa/danh từ - khoảng thời gian giữa ngày, thường là khoảng 12 giờ trưa (ví dụ: The sun is highest at midday. - Mặt trời lên cao nhất vào buổi trưa.)
+
+midnight = nửa đêm/danh từ - 12 giờ đêm, điểm giữa của đêm (ví dụ: The clock struck midnight. - Đồng hồ điểm nửa đêm.)
+
+minute = phút/danh từ - đơn vị đo thời gian bằng 60 giây (ví dụ: The train arrives in five minutes. - Tàu sẽ đến trong năm phút nữa.)
+
+nurse = y tá/danh từ - người chăm sóc bệnh nhân, làm việc dưới sự hướng dẫn của bác sĩ (ví dụ: The nurse gave me an injection. - Y tá đã tiêm cho tôi.)
+
+past = qua/giới từ - dùng để chỉ thời gian đã trôi qua một điểm mốc nhất định (ví dụ: It's ten past three. - Bây giờ là 3 giờ 10 phút.)
+
+quarter = 1 phần 4, 15 phút/danh từ - một phần tư của một tổng thể hoặc đơn vị thời gian là 15 phút (ví dụ: It's a quarter to nine. - Bây giờ là 9 giờ kém 15 phút.)
+
+small = nhỏ, bé/tính từ - có kích thước hoặc số lượng nhỏ (ví dụ: She lives in a small house. - Cô ấy sống trong một ngôi nhà nhỏ.)
+
+supper = bữa ăn đêm/danh từ - bữa ăn nhẹ vào buổi tối muộn (ví dụ: We had a light supper before going to bed. - Chúng tôi ăn bữa ăn nhẹ trước khi đi ngủ.)
+
+teeth = răng (số nhiều)/danh từ - các bộ phận trong miệng dùng để nhai thức ăn (ví dụ: Brush your teeth after every meal. - Đánh răng sau mỗi bữa ăn.)
+
+then = sau đó/trạng từ - dùng để chỉ sự kiện xảy ra sau một sự kiện khác (ví dụ: We went to the park, then we had ice cream. - Chúng tôi đi công viên, sau đó ăn kem.)
+
+time = thời gian, lần, lượt/danh từ - khoảng thời gian đo đếm được hoặc chỉ số lần thực hiện một hành động (ví dụ: What time is it? - Bây giờ là mấy giờ? / I've been there three times. - Tôi đã đến đó ba lần.)
+
+to = kém/giới từ - dùng để nói về thời gian còn lại trước giờ đầy (ví dụ: It's ten to six. - Bây giờ là 6 giờ kém 10 phút.)
+
+tooth = một cái răng/danh từ - một bộ phận trong miệng, dùng để nhai thức ăn (ví dụ: I have a toothache. - Tôi bị đau răng.)
+
+toothbrush = bàn chải đánh răng/danh từ - dụng cụ dùng để làm sạch răng (ví dụ: Don't forget to bring your toothbrush. - Đừng quên mang theo bàn chải đánh răng của bạn.)
+
+very = rất/trạng từ - nhấn mạnh mức độ cao của một tính chất hoặc tình trạng (ví dụ: She is very happy. - Cô ấy rất hạnh phúc.)
+
+wash = rửa, giặt/động từ - làm sạch bằng nước hoặc chất lỏng khác (ví dụ: Wash your hands before eating. - Rửa tay trước khi ăn.)
+
+which = nào, cái nào/đại từ - dùng để hỏi hoặc chỉ định một đối tượng hoặc người từ một nhóm cụ thể (ví dụ: Which book do you want to read? - Bạn muốn đọc quyển sách nào?)
