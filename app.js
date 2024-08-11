@@ -124,7 +124,7 @@ function nextWord() {
     if (isVietnameseToEnglish) {
         // Loại bỏ toàn bộ nội dung sau từ "ví dụ:" trong dấu ngoặc đơn
         const cleanedNote = currentWord.note
-            .replace(/( \(ví dụ:.*?\))/gi, "")
+            .replace(/\(ví dụ:.*?\)/gi, "")
             .trim();
         wordEl.textContent = `${currentWord.vietnamese}${
             cleanedNote ? ` (${cleanedNote})` : ""
@@ -173,12 +173,32 @@ function checkAnswer() {
         incorrectWords.push(currentWord);
     }
 
-    const noteInfo = currentWord.note ? ` - ${currentWord.note}` : "";
+    let infoText = "";
     if (isVietnameseToEnglish) {
-        infoEl.innerHTML = `<span class="highlight">${currentWord.vietnamese}</span> có nghĩa là <span class="highlight">${currentWord.english}</span> (${currentWord.type}${noteInfo}).`;
+        infoText = `<span class="highlight">${
+            currentWord.vietnamese
+        }</span> có nghĩa là <span class="highlight">${
+            currentWord.english
+        }</span> (${currentWord.type}${
+            currentWord.note ? ` - ${currentWord.note}` : ""
+        })`;
     } else {
-        infoEl.innerHTML = `<span class="highlight">${currentWord.english}</span> có nghĩa là <span class="highlight">${currentWord.vietnamese}</span> (${currentWord.type}${noteInfo}).`;
+        infoText = `<span class="highlight">${
+            currentWord.english
+        }</span> có nghĩa là <span class="highlight">${
+            currentWord.vietnamese
+        }</span> (${currentWord.type}${
+            currentWord.note ? ` - ${currentWord.note}` : ""
+        })`;
     }
+
+    // Thêm ví dụ nếu có
+    if (currentWord.exampleEn && currentWord.exampleVi) {
+        infoText += ` (ví dụ: ${currentWord.exampleEn} + ${currentWord.exampleVi})`;
+    }
+
+    infoEl.innerHTML = infoText;
+
     isAnswerSubmitted = true;
     submitEl.textContent = "Tiếp";
 }
@@ -200,12 +220,28 @@ function parseVocabularyFile(content) {
     return lines.map((line) => {
         const [english, rest] = line.split("=");
         const [vietnamese, typeAndNote] = rest.split("/");
-        const [type, note] = typeAndNote.split(" - ");
+        const [type, fullNote] = typeAndNote.split(" - ");
+
+        // Tách ví dụ tiếng Anh và tiếng Việt
+        const noteMatch = fullNote.match(/(.*?)\(ví dụ: (.*?) \+ (.*?)\)/);
+        let note = "",
+            exampleEn = "",
+            exampleVi = "";
+        if (noteMatch) {
+            note = noteMatch[1].trim();
+            exampleEn = noteMatch[2].trim();
+            exampleVi = noteMatch[3].trim();
+        } else {
+            note = fullNote.trim();
+        }
+
         return {
             english: english.trim(),
             vietnamese: vietnamese.trim(),
             type: type.trim(),
-            note: note ? note.trim() : "",
+            note: note,
+            exampleEn: exampleEn,
+            exampleVi: exampleVi,
         };
     });
 }
