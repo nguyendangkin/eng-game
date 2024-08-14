@@ -19,6 +19,7 @@ const progressEl = document.getElementById("progress");
 const errorMessageEl = document.getElementById("error-message");
 const saveProgressEl = document.getElementById("save-progress");
 const loadProgressEl = document.getElementById("load-progress");
+let learnedWords = []; // Add this to store successfully learned words
 
 document
     .getElementById("practice-vi-en")
@@ -92,11 +93,15 @@ function startPractice(viToEn, loadedProgress = null) {
     practiceEl.style.display = "block";
 
     if (loadedProgress) {
-        remainingWords = loadedProgress.remainingWords;
+        remainingWords = loadedProgress.remainingWords.filter(
+            (word) => !learnedWords.includes(word)
+        );
         incorrectWords = loadedProgress.incorrectWords;
         correctWords = loadedProgress.correctWords;
     } else {
-        remainingWords = [...vocabulary];
+        remainingWords = vocabulary.filter(
+            (word) => !learnedWords.includes(word)
+        );
         incorrectWords = [];
         correctWords = 0;
     }
@@ -165,6 +170,7 @@ function checkAnswer() {
         feedbackEl.textContent = "Đúng!";
         feedbackEl.className = "feedback correct";
         remainingWords = remainingWords.filter((word) => word !== currentWord);
+        learnedWords.push(currentWord); // Add to learned words
         correctWords++;
         updateProgress();
     } else {
@@ -202,7 +208,6 @@ function checkAnswer() {
     isAnswerSubmitted = true;
     submitEl.textContent = "Tiếp";
 }
-
 function updateProgress() {
     const progress =
         ((totalWords() - remainingWords.length) / totalWords()) * 100;
@@ -252,6 +257,7 @@ function saveProgressToFile() {
         incorrectWords,
         correctWords,
         isVietnameseToEnglish,
+        learnedWords, // Save learned words
     };
     const blob = new Blob([JSON.stringify(progress)], {
         type: "application/json",
@@ -276,6 +282,7 @@ function loadProgressFromFile() {
         reader.onload = (e) => {
             try {
                 const savedProgress = JSON.parse(e.target.result);
+                learnedWords = savedProgress.learnedWords || []; // Load learned words
                 startPractice(
                     savedProgress.isVietnameseToEnglish,
                     savedProgress
