@@ -5,6 +5,7 @@ let incorrectWords = [];
 let isVietnameseToEnglish = true;
 let correctWords = 0;
 let isAnswerSubmitted = false;
+let learnedWords = []; // Thêm biến này để lưu trữ các từ đã học thành công
 const totalWords = () => vocabulary.length;
 
 const menuEl = document.getElementById("menu");
@@ -19,7 +20,6 @@ const progressEl = document.getElementById("progress");
 const errorMessageEl = document.getElementById("error-message");
 const saveProgressEl = document.getElementById("save-progress");
 const loadProgressEl = document.getElementById("load-progress");
-let learnedWords = []; // Add this to store successfully learned words
 
 document
     .getElementById("practice-vi-en")
@@ -93,15 +93,17 @@ function startPractice(viToEn, loadedProgress = null) {
     practiceEl.style.display = "block";
 
     if (loadedProgress) {
+        learnedWords = loadedProgress.learnedWords || [];
         remainingWords = loadedProgress.remainingWords.filter(
             (word) => !learnedWords.includes(word)
         );
-        incorrectWords = loadedProgress.incorrectWords;
-        correctWords = loadedProgress.correctWords;
-    } else {
-        remainingWords = vocabulary.filter(
+        incorrectWords = loadedProgress.incorrectWords.filter(
             (word) => !learnedWords.includes(word)
         );
+        correctWords = loadedProgress.correctWords;
+    } else {
+        learnedWords = [];
+        remainingWords = [...vocabulary];
         incorrectWords = [];
         correctWords = 0;
     }
@@ -119,7 +121,9 @@ function nextWord() {
                 "<h2>Chúc mừng! Bạn đã hoàn thành tất cả các từ.</h2>";
             return;
         } else {
-            remainingWords = [...incorrectWords];
+            remainingWords = incorrectWords.filter(
+                (word) => !learnedWords.includes(word)
+            );
             incorrectWords = [];
         }
     }
@@ -127,7 +131,6 @@ function nextWord() {
     const index = Math.floor(Math.random() * remainingWords.length);
     currentWord = remainingWords[index];
     if (isVietnameseToEnglish) {
-        // Loại bỏ toàn bộ nội dung sau từ "ví dụ:" trong dấu ngoặc đơn
         const cleanedNote = currentWord.note
             .replace(/\(ví dụ:.*?\)/gi, "")
             .trim();
@@ -170,7 +173,9 @@ function checkAnswer() {
         feedbackEl.textContent = "Đúng!";
         feedbackEl.className = "feedback correct";
         remainingWords = remainingWords.filter((word) => word !== currentWord);
-        learnedWords.push(currentWord); // Add to learned words
+        if (!learnedWords.includes(currentWord)) {
+            learnedWords.push(currentWord);
+        }
         correctWords++;
         updateProgress();
     } else {
@@ -198,7 +203,6 @@ function checkAnswer() {
         })`;
     }
 
-    // Thêm ví dụ nếu có
     if (currentWord.exampleEn && currentWord.exampleVi) {
         infoText += ` (ví dụ: ${currentWord.exampleEn} + ${currentWord.exampleVi})`;
     }
@@ -208,13 +212,15 @@ function checkAnswer() {
     isAnswerSubmitted = true;
     submitEl.textContent = "Tiếp";
 }
+
 function updateProgress() {
     const progress =
         ((totalWords() - remainingWords.length) / totalWords()) * 100;
     progressEl.style.width = `${progress}%`;
 }
+
 function speakWord() {
-    const text = currentWord.english; // Always speak the English word
+    const text = currentWord.english;
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = "en-US";
     speechSynthesis.speak(utterance);
@@ -227,7 +233,6 @@ function parseVocabularyFile(content) {
         const [vietnamese, typeAndNote] = rest.split("/");
         const [type, fullNote] = typeAndNote.split(" - ");
 
-        // Tách ví dụ tiếng Anh và tiếng Việt
         const noteMatch = fullNote.match(/(.*?)\(ví dụ: (.*?) \+ (.*?)\)/);
         let note = "",
             exampleEn = "",
@@ -257,7 +262,7 @@ function saveProgressToFile() {
         incorrectWords,
         correctWords,
         isVietnameseToEnglish,
-        learnedWords, // Save learned words
+        learnedWords,
     };
     const blob = new Blob([JSON.stringify(progress)], {
         type: "application/json",
@@ -282,7 +287,6 @@ function loadProgressFromFile() {
         reader.onload = (e) => {
             try {
                 const savedProgress = JSON.parse(e.target.result);
-                learnedWords = savedProgress.learnedWords || []; // Load learned words
                 startPractice(
                     savedProgress.isVietnameseToEnglish,
                     savedProgress
