@@ -94,11 +94,22 @@ function startPractice(viToEn, loadedProgress = null) {
 
     if (loadedProgress) {
         learnedWords = loadedProgress.learnedWords || [];
+        // Loại bỏ các từ đã học thành công khỏi danh sách remainingWords
         remainingWords = loadedProgress.remainingWords.filter(
-            (word) => !learnedWords.includes(word)
+            (word) =>
+                !learnedWords.some(
+                    (learned) =>
+                        learned.english === word.english &&
+                        learned.vietnamese === word.vietnamese
+                )
         );
         incorrectWords = loadedProgress.incorrectWords.filter(
-            (word) => !learnedWords.includes(word)
+            (word) =>
+                !learnedWords.some(
+                    (learned) =>
+                        learned.english === word.english &&
+                        learned.vietnamese === word.vietnamese
+                )
         );
         correctWords = loadedProgress.correctWords;
     } else {
@@ -173,8 +184,14 @@ function checkAnswer() {
         feedbackEl.textContent = "Đúng!";
         feedbackEl.className = "feedback correct";
         remainingWords = remainingWords.filter((word) => word !== currentWord);
-        if (!learnedWords.includes(currentWord)) {
-            learnedWords.push(currentWord);
+        if (
+            !learnedWords.some(
+                (word) =>
+                    word.english === currentWord.english &&
+                    word.vietnamese === currentWord.vietnamese
+            )
+        ) {
+            learnedWords.push(currentWord); // Lưu từ đã học thành công
         }
         correctWords++;
         updateProgress();
@@ -262,7 +279,7 @@ function saveProgressToFile() {
         incorrectWords,
         correctWords,
         isVietnameseToEnglish,
-        learnedWords,
+        learnedWords, // Lưu danh sách từ đã học thành công
     };
     const blob = new Blob([JSON.stringify(progress)], {
         type: "application/json",
